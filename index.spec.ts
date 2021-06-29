@@ -1,11 +1,18 @@
-import { firefox } from "playwright";
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import faker from "faker";
 import moment from "moment";
+import randomFile from 'select-random-file';
+import util from 'util';
+
+const submitForm = false;
+
+const getImg = util.promisify(randomFile);
 
 test("fill out form", async ({ page }) => {
   //const browser = await firefox.launch();
   //const page = await browser.newPage();
+
+  let img = "./imgs/" + await getImg("./imgs/");
 
   let states = [`AL`,`AK`,`AZ`,`AR`,`CA`,`CO`,`CT`,`DE`,`DC`,`FL`,`GA`,`HI`,`ID`,`IL`,`IN`,`IA`,`KS`,`KY`,`LA`,`ME`,`MD`,`MA`,`MI`,`MN`,`MS`,`MO`,`MT`,`NE`,`NV`,`NH`,`NJ`,`NM`,`NY`,`NC`,`ND`,`OH`,`OK`,`OR`,`PA`,`RI`,`SC`,`SD`,`TN`,`TX`,`UT`,`VT`,`VA`,`WA`,`WV`,`WI`,`WY`]
   let state = faker.address.stateAbbr()
@@ -24,7 +31,7 @@ test("fill out form", async ({ page }) => {
   // Upload stella-3.jpg
   await page
     .frame(f)
-    .setInputFiles('input[name="ngxUserUpload"]', "./imgs/stella-3.jpg");
+    .setInputFiles('input[name="ngxUserUpload"]', img);
   // Click [placeholder="First Name"]
   // Fill [placeholder="First Name"]
   await page
@@ -57,6 +64,12 @@ test("fill out form", async ({ page }) => {
   await page.frame(f).fill('input[name="phone"]', faker.phone.phoneNumber("(###)###-####"));
   await page.frame(f).check('input[name="terms_and_conditions"]');
 
-  await page.screenshot({ path: `example.png` });
+  await page.screenshot({ path: `screenshot-form.png`, fullPage: true });
   //await browser.close();
+
+  if(submitForm){
+    await page.click(`button.xSubmit`);
+    await page.waitForTimeout(5000);
+    await page.screenshot({ path: `screenshot-success.png`, fullPage: true });
+  }
 });

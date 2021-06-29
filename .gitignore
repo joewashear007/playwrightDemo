@@ -116,3 +116,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.github/workflows/node.js.yml
+screenshot*.png
