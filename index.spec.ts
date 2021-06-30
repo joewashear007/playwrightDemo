@@ -4,7 +4,7 @@ import moment from "moment";
 import randomFile from 'select-random-file';
 import util from 'util';
 
-const submitForm = false;
+const submitForm = true;
 
 const getImg = util.promisify(randomFile);
 
@@ -17,7 +17,7 @@ test("fill out form", async ({ page }) => {
   let states = [`AL`,`AK`,`AZ`,`AR`,`CA`,`CO`,`CT`,`DE`,`DC`,`FL`,`GA`,`HI`,`ID`,`IL`,`IN`,`IA`,`KS`,`KY`,`LA`,`ME`,`MD`,`MA`,`MI`,`MN`,`MS`,`MO`,`MT`,`NE`,`NV`,`NH`,`NJ`,`NM`,`NY`,`NC`,`ND`,`OH`,`OK`,`OR`,`PA`,`RI`,`SC`,`SD`,`TN`,`TX`,`UT`,`VT`,`VA`,`WA`,`WV`,`WI`,`WY`]
   let state = faker.address.stateAbbr()
   let stateIndex = states.indexOf(state) +1;
-  let email = "jonathan@livecchi.cloud";
+  let email = "FAKER@COLLINBEESON.XYZ";
   let birthdate = moment(faker.date.past(faker.datatype.number(40), (moment()).add(-21, "year").toDate()));
   let f = {
     url: "https://us-d.wayin.com/display/container/dc/9c0f01cd-1143-4dfe-a4be-eea3ffcac5fd/details?mode=responsive",
