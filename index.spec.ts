@@ -20,12 +20,12 @@ test("fill out form", async ({ page }) => {
   let email = `${faker.random.word()}@healthysupps.club`;
   let birthdate = moment(faker.date.past(faker.datatype.number(40), (moment()).add(-21, "year").toDate()));
   let f = {
-    url: "https://www.mycooler.com/en/ULTRAbeerrun.html",
+    url: "https://us-d.wayin.com/display/container/dc/58090112-6333-4f98-9a6d-e7dc3214a334/details?mode=responsive",
   };
 
   // Go to https://www.mycooler.com/en/ULTRAbeerrun.html
   await page.goto(
-    "https://www.mycooler.com/en/ULTRAbeerrun.html",
+    "https://us-d.wayin.com/display/container/dc/58090112-6333-4f98-9a6d-e7dc3214a334/details?mode=responsive",
     { timeout: 60000 }
   );
   // Upload stella-3.jpg
